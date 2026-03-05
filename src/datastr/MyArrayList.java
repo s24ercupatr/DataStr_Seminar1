@@ -46,6 +46,47 @@ public class MyArrayList {
 		list[howManyElements++] = element;
 		//howManyElements++;
 	}
+	
+	public void add(char element, int index) throws IllegalAccessException {
+		if(index < 0) {
+			throw new IllegalArgumentException("Nav iespejams pievienot elementu, indekss nevar but negativs (index out of bounds for list)!");
+		}
+		
+		if(index > howManyElements) {
+			throw new IllegalArgumentException("Nav iespejams pievienot elementu, indekss ir parak liels (index out of bounds for list)!"); 
+		}
+		
+		if(index == howManyElements) {
+			add(element);
+			return;
+		}
+		
+		if(isFull()) {
+			resize();
+		}
+		
+		for(int i = howManyElements; i > index; i--) {
+			list[i] = list[i-1];
+		}
+		list[index] = element;
+		howManyElements++;
+		
+//		if(index >= 0 && index <= howManyElements) {
+//			for(int i = howManyElements; i >= index; i--) {
+//				if(i == index) {
+//					char tempElement = list[i];
+//					list[i] = element;
+//					list[i++] = tempElement;
+//					list[i--] = element;
+//				} else {
+//					
+//				}
+//			}
+//			list[index] = element;
+//		} else {
+//			System.out.println("Index is out of bounds for list!");
+//		}
+	}
 }
 
 
