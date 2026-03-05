@@ -11,7 +11,7 @@ public class MyArrayList {
 	}
 	
 	public MyArrayList(int inputSize) {
-		if(inputSize > 0 && inputSize <10000) {
+		if(inputSize > 0 && inputSize < 10000) {
 			size = inputSize;
 		}
 		list = new char[size];
@@ -37,4 +37,31 @@ public class MyArrayList {
 		size = newSize;
 		System.gc();
 	}
+	
+	public void add(char element) {
+		if(isFull()) {
+			resize();
+		}
+		
+		list[howManyElements++] = element;
+		//howManyElements++;
+	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
