@@ -132,6 +132,42 @@ public class MyArrayList {
 		
 		return indexArrayList;
 	}
+	
+	public char[] getNextElements(char element) throws Exception {
+		ArrayList<Integer> arrayListForIndexes = search(element);
+		
+		int howManyNextElements = arrayListForIndexes.size();
+		if(arrayListForIndexes.get(arrayListForIndexes.size()-1) == howManyElements-1) {
+			howManyNextElements--;
+		}
+		
+		char[] nextElements = new char[howManyNextElements];
+		int indexForNextElementArray = 0;
+		
+		for(int i = 0; i < arrayListForIndexes.size(); i++) {
+			int nextElementIndex = arrayListForIndexes.get(i)+1;
+			nextElements[indexForNextElementArray] = list[nextElementIndex];
+			indexForNextElementArray++;
+		}
+		
+		return nextElements;
+	}
+	
+	public void sort() throws Exception {
+		if(isEmpty()) {
+			throw new Exception("List ir tukss, nevar sakartot!");
+		}
+		
+		for(int i = 0; i < howManyElements; i++) {
+			for(int j = 0; j < howManyElements; i++) {
+				if(list[i] > list[j]) {
+					char temp = list[i];
+					list[i] = list[j];
+					list[j] = temp;
+				}
+			}
+		}
+	}
 }
 
 
