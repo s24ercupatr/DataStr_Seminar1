@@ -168,6 +168,26 @@ public class MyArrayList {
 			}
 		}
 	}
+	
+	public void print() throws Exception {
+		if(isEmpty()) {
+			throw new Exception("List ir tukss, nevar izprintet!");
+		}
+		
+		for(int i = 0; i < howManyElements; i++) {
+			System.out.print(list[i] + ", ");
+		}
+		
+		System.out.println();
+	}
+	
+	public void makeEmpty() {
+		list = null;
+		System.gc();
+		howManyElements = 0;
+		size = DEFAULT_SIZE;
+		list = new char[size];
+	}
 }
 
 
