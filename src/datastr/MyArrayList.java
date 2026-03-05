@@ -70,22 +70,29 @@ public class MyArrayList {
 		}
 		list[index] = element;
 		howManyElements++;
+	}
+	
+	public int getHowManyElements() {
+		return howManyElements;
+	}
+	
+	public void remove(int index) throws Exception {
+		if(isEmpty()) {
+			throw new Exception("List ir tukss, nevar dzest elementu!");
+		}
+		if(index < 0) {
+			throw new Exception("Nav iespejams dzest elementu, indekss nevar but negativs (index out of bounds for list)!");
+		}
 		
-//		if(index >= 0 && index <= howManyElements) {
-//			for(int i = howManyElements; i >= index; i--) {
-//				if(i == index) {
-//					char tempElement = list[i];
-//					list[i] = element;
-//					list[i++] = tempElement;
-//					list[i--] = element;
-//				} else {
-//					
-//				}
-//			}
-//			list[index] = element;
-//		} else {
-//			System.out.println("Index is out of bounds for list!");
-//		}
+		if(index > howManyElements) {
+			throw new Exception("Nav iespejams dzest elementu, indekss ir parak liels (index out of bounds for list)!"); 
+		}
+		
+		for(int i = index; i > howManyElements-1; i--) {
+			list[i] = list[i+1];
+		}
+		list[howManyElements-1] = ' ';
+		howManyElements--;
 	}
 }
 
