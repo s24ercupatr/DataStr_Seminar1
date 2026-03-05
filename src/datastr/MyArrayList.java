@@ -1,5 +1,7 @@
 package datastr;
 
+import java.util.ArrayList;
+
 public class MyArrayList {
 	private char[] list;
 	private int howManyElements = 0;
@@ -52,7 +54,7 @@ public class MyArrayList {
 			throw new IllegalArgumentException("Nav iespejams pievienot elementu, indekss nevar but negativs (index out of bounds for list)!");
 		}
 		
-		if(index > howManyElements) {
+		if(index >= howManyElements) {
 			throw new IllegalArgumentException("Nav iespejams pievienot elementu, indekss ir parak liels (index out of bounds for list)!"); 
 		}
 		
@@ -76,23 +78,59 @@ public class MyArrayList {
 		return howManyElements;
 	}
 	
-	public void remove(int index) throws Exception {
+	public void remove(int index) throws IllegalArgumentException {
 		if(isEmpty()) {
-			throw new Exception("List ir tukss, nevar dzest elementu!");
+			throw new IllegalArgumentException("List ir tukss, nevar dzest elementu!");
 		}
+		
 		if(index < 0) {
-			throw new Exception("Nav iespejams dzest elementu, indekss nevar but negativs (index out of bounds for list)!");
+			throw new IllegalArgumentException("Nav iespejams dzest elementu, indekss nevar but negativs (index out of bounds for list)!");
 		}
 		
-		if(index > howManyElements) {
-			throw new Exception("Nav iespejams dzest elementu, indekss ir parak liels (index out of bounds for list)!"); 
+		if(index >= howManyElements) {
+			throw new IllegalArgumentException("Nav iespejams dzest elementu, indekss ir parak liels (index out of bounds for list)!"); 
 		}
 		
-		for(int i = index; i > howManyElements-1; i--) {
+		for(int i = index; i < howManyElements-1; i--) {
 			list[i] = list[i+1];
 		}
 		list[howManyElements-1] = ' ';
 		howManyElements--;
+	}
+	
+	public char get(int index) throws IllegalArgumentException {
+		if(isEmpty()) {
+			throw new IllegalArgumentException("List ir tukss, nevar iegut elementu!");
+		}
+		
+		if(index < 0) {
+			throw new IllegalArgumentException("Nav iespejams iegut elementu, indekss nevar but negativs (index out of bounds for list)!");
+		}
+		
+		if(index >= howManyElements) {
+			throw new IllegalArgumentException("Nav iespejams iegut elementu, indekss ir parak liels (index out of bounds for list)!"); 
+		}
+		
+		return list[index];
+	}
+	
+	public ArrayList<Integer> search(char element) throws Exception {
+		if(isEmpty()) {
+			throw new Exception("List ir tukss, nevar sameklet elementu!");
+		}
+		
+		ArrayList<Integer> indexArrayList = new ArrayList<Integer>();
+		for(int i = 0; i < howManyElements; i++) {
+			if(list[i] == element) {
+				indexArrayList.add(i);
+			}
+		}
+		
+		if(indexArrayList.isEmpty()) {
+			throw new Exception("List neeksiste '" + element  + "' elements!");
+		}
+		
+		return indexArrayList;
 	}
 }
 
