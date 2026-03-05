@@ -114,7 +114,7 @@ public class MyArrayList {
 		return list[index];
 	}
 	
-	public ArrayList<Integer> search(char element) throws Exception {
+	public int[] search(char element) throws Exception {
 		if(isEmpty()) {
 			throw new Exception("List ir tukss, nevar sameklet elementu!");
 		}
@@ -126,11 +126,27 @@ public class MyArrayList {
 			}
 		}
 		
-		if(indexArrayList.isEmpty()) {
+		int howManyIndexes = 0;
+		for(int i = 0; i < howManyElements; i++) {
+			if(list[i] == element) {
+				howManyIndexes++;
+			}
+		}
+		
+		int[] indexArray = new int[howManyIndexes];
+		int indexForIndexesArray = 0;
+		for(int i = 0; i < howManyElements; i++) {
+			if(list[i] == element) {
+				indexArray[indexForIndexesArray] = i;
+				indexForIndexesArray++;
+			};
+		}
+		
+		if(indexForIndexesArray == 0) {
 			throw new Exception("List neeksiste '" + element  + "' elements!");
 		}
 		
-		return indexArrayList;
+		return indexArray;
 	}
 }
 
